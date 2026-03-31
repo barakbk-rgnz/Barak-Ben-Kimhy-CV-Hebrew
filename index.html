@@ -146,9 +146,62 @@
         }
 
         @media print {
-            .topbar, .ambient-glow, body::before { display: none !important; }
-            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            .timeline-item:hover, .tech-item:hover { transform: none; box-shadow: none; }
+    @page { size: A4; margin: 12mm 14mm; }
+    .topbar, .ambient-glow, body::before { display: none !important; }
+    body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    
+    /* Tighten everything for print */
+    .hero { padding: 20px 0 15px; gap: 24px; }
+    .hero-photo { width: 100px; height: 100px; }
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-title { font-size: 0.95rem; margin-bottom: 8px; }
+    .hero-about { font-size: 0.8rem; line-height: 1.5; }
+    .hero-contact { gap: 12px; margin-top: 8px; }
+    .contact-item { font-size: 0.75rem; }
+    .section { padding: 12px 0; }
+    .section-header { margin-bottom: 12px; }
+    .section-title { font-size: 1.2rem; }
+    .timeline { padding-right: 0; }
+    .timeline::before { display: none; }
+    .timeline-item::before { display: none; }
+    .timeline-item { margin-bottom: 10px; padding: 10px 14px; }
+    .timeline-item:hover { transform: none; box-shadow: none; }
+    .timeline-company { font-size: 0.95rem; }
+    .timeline-role { font-size: 0.8rem; margin-bottom: 4px; }
+    .timeline-location { font-size: 0.7rem; margin-bottom: 6px; }
+    .timeline-bullets li { font-size: 0.75rem; line-height: 1.45; margin-bottom: 2px; }
+    .initiatives-grid { gap: 10px; }
+    .initiative-card { padding: 10px 12px; }
+    .initiative-icon { display: none; }
+    .initiative-card h3 { font-size: 0.85rem; margin-bottom: 3px; }
+    .initiative-card p { font-size: 0.7rem; line-height: 1.4; }
+    .skills-grid { gap: 6px; }
+    .skill-tag { padding: 4px 12px; font-size: 0.7rem; }
+    .tech-grid { gap: 8px; }
+    .tech-item { padding: 8px 6px; gap: 4px; }
+    .tech-icon { width: 36px; height: 36px; }
+    .tech-icon img { width: 24px !important; height: 24px !important; }
+    .tech-name { font-size: 0.7rem; }
+    .tech-desc { font-size: 0.6rem; }
+    .edu-grid { gap: 10px; }
+    .edu-card { padding: 10px 12px; }
+    .edu-institution { font-size: 0.85rem; }
+    .edu-degree { font-size: 0.75rem; }
+    .edu-year { font-size: 0.65rem; }
+    .lang-item { padding: 6px 14px; font-size: 0.75rem; }
+    .footer { padding: 12px 0; font-size: 0.65rem; }
+    
+    /* Prevent cuts mid-section */
+    .timeline-item, .initiative-card, .edu-card, .tech-item, .lang-item {
+        page-break-inside: avoid;
+    }
+    .section {
+        page-break-inside: avoid;
+    }
+    
+    /* Force animations to show in print */
+    .fade-in { opacity: 1 !important; transform: none !important; }
+}
         }
     </style>
 </head>
