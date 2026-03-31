@@ -86,10 +86,10 @@
         .skill-tag:hover { border-color: var(--accent-primary); color: var(--accent-primary); background: rgba(108, 99, 255, 0.08); }
         .skill-tag.highlight { border-color: var(--accent-primary); color: var(--accent-primary); background: rgba(108, 99, 255, 0.1); }
 
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+        .tech-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
         .tech-item { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 12px; background: var(--gradient-card); border: 1px solid var(--border-subtle); border-radius: 14px; transition: all 0.3s ease; text-align: center; }
         .tech-item:hover { border-color: var(--border-glow); transform: translateY(-2px); }
-        .tech-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(108, 99, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+        .tech-icon { width: 52px; height: 52px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
         .tech-name { font-weight: 600; font-size: 0.88rem; color: var(--text-primary); }
         .tech-desc { font-size: 0.75rem; color: var(--text-muted); }
 
@@ -156,9 +156,9 @@
                 מתמחה בהפיכת מידע מורכב ומפוזר לתמונה ניהולית ברורה שמאפשרת קבלת החלטות מהירה ומדויקת למנהלים, דירקטוריונים ובעלי עניין.
             </p>
             <div class="hero-contact">
-                <a href="mailto:barakbenk@gmail.com" class="contact-item">
+                <a id="heb-email" href="#" class="contact-item">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    barakbenk@gmail.com
+                    <span id="heb-email-text"></span>
                 </a>
                 <a href="tel:+972505907673" class="contact-item">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -323,54 +323,79 @@
 
         <div class="tech-grid">
             <div class="tech-item">
-                <div class="tech-icon">❄️</div>
+                <div class="tech-icon"><img src="https://cdn.simpleicons.org/snowflake/29B5E8" style="width:32px;height:32px;" alt="Snowflake"></div>
                 <span class="tech-name">Snowflake</span>
                 <span class="tech-desc">מחסן נתונים ארגוני</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">🤖</div>
-                <span class="tech-name">Claude / Anthropic</span>
-                <span class="tech-desc">בינה מלאכותית גנרטיבית</span>
+                <div class="tech-icon"><img src="logos/tableau.png" style="width:32px;height:32px;object-fit:contain;" alt="Tableau"></div>
+                <span class="tech-name">Tableau</span>
+                <span class="tech-desc">בינה עסקית</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">🔍</div>
+                <div class="tech-icon"><img src="logos/thoughtspot.png" style="width:32px;height:32px;object-fit:contain;" alt="ThoughtSpot"></div>
                 <span class="tech-name">ThoughtSpot</span>
-                <span class="tech-desc">דוחות מונחי AI</span>
+                <span class="tech-desc">דוחות והנגשת מידע</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">📊</div>
-                <span class="tech-name">Tableau / PowerBI</span>
-                <span class="tech-desc">ויזואליזציה ודיווח</span>
-            </div>
-            <div class="tech-item">
-                <div class="tech-icon">🔗</div>
+                <div class="tech-icon"><img src="logos/boomi.png" style="width:32px;height:32px;object-fit:contain;" alt="Boomi"></div>
                 <span class="tech-name">Boomi</span>
                 <span class="tech-desc">אינטגרציית מערכות</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">💼</div>
-                <span class="tech-name">Salesforce</span>
-                <span class="tech-desc">ניהול לקוחות ומכירות</span>
+                <div class="tech-icon"><img src="logos/cursor.png" style="width:32px;height:32px;object-fit:contain;" alt="Cursor"></div>
+                <span class="tech-name">Cursor AI</span>
+                <span class="tech-desc">פיתוח מואץ ב-AI</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">☁️</div>
-                <span class="tech-name">Google Cloud</span>
+                <div class="tech-icon"><img src="logos/figma.png" style="width:32px;height:32px;object-fit:contain;" alt="Figma"></div>
+                <span class="tech-name">Figma</span>
+                <span class="tech-desc">עיצוב ממשקים</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><img src="logos/gcp.png" style="width:32px;height:32px;object-fit:contain;" alt="GCP"></div>
+                <span class="tech-name">GCP</span>
                 <span class="tech-desc">תשתיות ענן</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">🐍</div>
-                <span class="tech-name">SQL / Python</span>
-                <span class="tech-desc">ניתוח נתונים ופיתוח</span>
+                <div class="tech-icon"><img src="logos/aws.png" style="width:32px;height:32px;object-fit:contain;" alt="AWS"></div>
+                <span class="tech-name">AWS</span>
+                <span class="tech-desc">תשתיות ענן</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">📋</div>
+                <div class="tech-icon"><img src="https://cdn.simpleicons.org/github/181717" style="width:32px;height:32px;" alt="GitHub"></div>
+                <span class="tech-name">GitHub</span>
+                <span class="tech-desc">ניהול קוד</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><img src="https://cdn.simpleicons.org/jira/0052CC" style="width:32px;height:32px;" alt="Jira"></div>
                 <span class="tech-name">Jira</span>
                 <span class="tech-desc">ניהול פרויקטים</span>
             </div>
             <div class="tech-item">
-                <div class="tech-icon">⚡</div>
-                <span class="tech-name">Cursor AI</span>
-                <span class="tech-desc">פיתוח מואץ בבינה מלאכותית</span>
+                <div class="tech-icon"><img src="logos/mongodb.png" style="width:32px;height:32px;object-fit:contain;" alt="MongoDB"></div>
+                <span class="tech-name">MongoDB</span>
+                <span class="tech-desc">בסיס נתונים NoSQL</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><img src="https://cdn.simpleicons.org/python/3776AB" style="width:32px;height:32px;" alt="Python"></div>
+                <span class="tech-name">Python</span>
+                <span class="tech-desc">ניתוח ואוטומציה</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><img src="https://cdn.simpleicons.org/postgresql/4169E1" style="width:32px;height:32px;" alt="PostgreSQL"></div>
+                <span class="tech-name">SQL</span>
+                <span class="tech-desc">שפת שאילתות</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><img src="logos/powerbi.png" style="width:32px;height:32px;object-fit:contain;" alt="PowerBI"></div>
+                <span class="tech-name">PowerBI</span>
+                <span class="tech-desc">בינה עסקית</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon"><img src="logos/salesforce.png" style="width:32px;height:32px;object-fit:contain;" alt="Salesforce"></div>
+                <span class="tech-name">Salesforce</span>
+                <span class="tech-desc">ניהול לקוחות</span>
             </div>
         </div>
     </section>
@@ -431,10 +456,15 @@
 </div>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    var eu='barakbenk',ed='gmail.com',em=eu+String.fromCharCode(64)+ed;
+    document.getElementById('heb-email').href='mail'+'to:'+em;
+    document.getElementById('heb-email-text').textContent=em;
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
 </script>
 
 </body>
