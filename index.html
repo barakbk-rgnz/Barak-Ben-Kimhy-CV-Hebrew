@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
+        [data-theme="dark"] {
             --bg-primary: #0f0f1a;
             --bg-secondary: #161625;
             --bg-card: #1c1c30;
@@ -23,6 +23,21 @@
             --gradient-card: linear-gradient(145deg, #1c1c30 0%, #141428 100%);
             --shadow-glow: 0 0 30px rgba(108, 99, 255, 0.15);
         }
+        [data-theme="light"] {
+            --bg-primary: #f8f8fc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --accent-primary: #5046e5;
+            --accent-secondary: #0fa87e;
+            --text-primary: #1a1a2e;
+            --text-secondary: #55556e;
+            --text-muted: #8a8aa4;
+            --border-subtle: rgba(80, 70, 229, 0.1);
+            --border-glow: rgba(80, 70, 229, 0.25);
+            --gradient-hero: linear-gradient(135deg, #5046e5 0%, #0fa87e 100%);
+            --gradient-card: #ffffff;
+            --shadow-glow: 0 2px 16px rgba(80, 70, 229, 0.06);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Heebo', sans-serif;
@@ -30,7 +45,11 @@
             color: var(--text-primary);
             line-height: 1.7;
             overflow-x: hidden;
+            transition: background 0.4s, color 0.4s;
         }
+        .topbar { position: fixed; top: 20px; left: 24px; z-index: 999; display: flex; gap: 10px; }
+        .tbtn { width: 48px; height: 48px; border-radius: 14px; border: 1px solid var(--border-subtle); background: var(--bg-card); color: var(--text-primary); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; box-shadow: var(--shadow-glow); }
+        .tbtn:hover { border-color: var(--border-glow); transform: scale(1.05); }
         body::before {
             content: '';
             position: fixed;
@@ -90,6 +109,7 @@
         .tech-item { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 12px; background: var(--gradient-card); border: 1px solid var(--border-subtle); border-radius: 14px; transition: all 0.3s ease; text-align: center; }
         .tech-item:hover { border-color: var(--border-glow); transform: translateY(-2px); }
         .tech-icon { width: 52px; height: 52px; border-radius: 12px; background: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        [data-theme="light"] .initiative-card, [data-theme="light"] .timeline-item, [data-theme="light"] .edu-card, [data-theme="light"] .lang-item, [data-theme="light"] .tech-item { border: 1px solid var(--border-subtle); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
         .tech-name { font-weight: 600; font-size: 0.88rem; color: var(--text-primary); }
         .tech-desc { font-size: 0.75rem; color: var(--text-muted); }
 
@@ -126,16 +146,20 @@
         }
 
         @media print {
-            body { background: #fff; color: #111; }
-            .ambient-glow, body::before { display: none; }
-            .timeline-item, .initiative-card, .edu-card, .tech-item, .lang-item, .skill-tag { background: #f8f8fc; border-color: #ddd; color: #222; box-shadow: none; }
-            .section-title, .timeline-company, .initiative-card h3, .edu-institution, .tech-name { color: #111; }
-            .timeline-role, .hero-title { color: #6c63ff; -webkit-text-fill-color: #6c63ff; }
-            .timeline-bullets li, .initiative-card p, .hero-about, .edu-degree, .contact-item { color: #444; }
+            .topbar, .ambient-glow, body::before { display: none !important; }
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .timeline-item:hover, .tech-item:hover { transform: none; box-shadow: none; }
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
+
+<div class="topbar">
+    <button class="tbtn" id="tt" title="החלפת ערכת נושא">&#9728;&#65039;</button>
+    <button class="tbtn" id="pb" title="הורדה כ-PDF">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
+    </button>
+</div>
 
 <div class="ambient-glow glow-1"></div>
 <div class="ambient-glow glow-2"></div>
@@ -459,6 +483,22 @@
     var eu='barakbenk',ed='gmail.com',em=eu+String.fromCharCode(64)+ed;
     document.getElementById('heb-email').href='mail'+'to:'+em;
     document.getElementById('heb-email-text').textContent=em;
+
+    var t=document.getElementById('tt'),b=document.body,s=localStorage.getItem('cv-t-he');
+    if(s){b.setAttribute('data-theme',s);}
+    updateIcon();
+    t.addEventListener('click',function(){
+        var c=b.getAttribute('data-theme');
+        var n=c==='dark'?'light':'dark';
+        b.setAttribute('data-theme',n);
+        localStorage.setItem('cv-t-he',n);
+        updateIcon();
+    });
+    function updateIcon(){
+        t.innerHTML=b.getAttribute('data-theme')==='dark'?'&#9728;&#65039;':'&#127769;';
+    }
+    document.getElementById('pb').addEventListener('click',function(){window.print();});
+
     var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) entry.target.classList.add('visible');
