@@ -150,59 +150,75 @@
     .topbar, .ambient-glow, body::before { display: none !important; }
     body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     
-    /* Tighten everything for print */
-    .hero { padding: 20px 0 15px; gap: 24px; }
-    .hero-photo { width: 100px; height: 100px; }
-    .hero-content h1 { font-size: 1.8rem; }
-    .hero-title { font-size: 0.95rem; margin-bottom: 8px; }
-    .hero-about { font-size: 0.8rem; line-height: 1.5; }
-    .hero-contact { gap: 12px; margin-top: 8px; }
-    .contact-item { font-size: 0.75rem; }
-    .section { padding: 12px 0; }
-    .section-header { margin-bottom: 12px; }
-    .section-title { font-size: 1.2rem; }
+    /* Compact hero into a single row */
+    .hero { padding: 10px 0 8px; grid-template-columns: 70px 1fr; gap: 16px; }
+    .hero-photo { width: 65px; height: 65px; }
+    .hero-content h1 { font-size: 1.4rem; margin-bottom: 0; }
+    .hero-title { font-size: 0.8rem; margin-bottom: 4px; }
+    .hero-about { font-size: 0.68rem; line-height: 1.4; }
+    .hero-contact { gap: 10px; margin-top: 4px; }
+    .contact-item { font-size: 0.65rem; }
+    .contact-item svg { width: 12px; height: 12px; }
+    
+    /* Sections */
+    .section { padding: 6px 0; }
+    .section-header { margin-bottom: 8px; }
+    .section-dot { width: 6px; height: 6px; }
+    .section-title { font-size: 1rem; }
+    
+    /* Timeline */
     .timeline { padding-right: 0; }
     .timeline::before { display: none; }
     .timeline-item::before { display: none; }
-    .timeline-item { margin-bottom: 10px; padding: 10px 14px; }
+    .timeline-item { margin-bottom: 6px; padding: 6px 10px; }
     .timeline-item:hover { transform: none; box-shadow: none; }
-    .timeline-company { font-size: 0.95rem; }
-    .timeline-role { font-size: 0.8rem; margin-bottom: 4px; }
-    .timeline-location { font-size: 0.7rem; margin-bottom: 6px; }
-    .timeline-bullets li { font-size: 0.75rem; line-height: 1.45; margin-bottom: 2px; }
-    .initiatives-grid { gap: 10px; }
-    .initiative-card { padding: 10px 12px; }
+    .timeline-company { font-size: 0.8rem; }
+    .timeline-date { font-size: 0.6rem; }
+    .timeline-role { font-size: 0.7rem; margin-bottom: 2px; }
+    .timeline-location { font-size: 0.6rem; margin-bottom: 3px; }
+    .timeline-bullets li { font-size: 0.65rem; line-height: 1.35; margin-bottom: 1px; }
+    
+    /* Initiatives - very compact, hide icons */
+    .initiatives-grid { gap: 6px; grid-template-columns: repeat(2, 1fr); }
+    .initiative-card { padding: 6px 8px; }
     .initiative-icon { display: none; }
-    .initiative-card h3 { font-size: 0.85rem; margin-bottom: 3px; }
-    .initiative-card p { font-size: 0.7rem; line-height: 1.4; }
-    .skills-grid { gap: 6px; }
-    .skill-tag { padding: 4px 12px; font-size: 0.7rem; }
-    .tech-grid { gap: 8px; }
-    .tech-item { padding: 8px 6px; gap: 4px; }
-    .tech-icon { width: 36px; height: 36px; }
-    .tech-icon img { width: 24px !important; height: 24px !important; }
-    .tech-name { font-size: 0.7rem; }
-    .tech-desc { font-size: 0.6rem; }
-    .edu-grid { gap: 10px; }
-    .edu-card { padding: 10px 12px; }
-    .edu-institution { font-size: 0.85rem; }
-    .edu-degree { font-size: 0.75rem; }
-    .edu-year { font-size: 0.65rem; }
-    .lang-item { padding: 6px 14px; font-size: 0.75rem; }
-    .footer { padding: 12px 0; font-size: 0.65rem; }
+    .initiative-card h3 { font-size: 0.72rem; margin-bottom: 2px; }
+    .initiative-card p { font-size: 0.6rem; line-height: 1.3; }
     
-    /* Prevent cuts mid-section */
-    .timeline-item, .initiative-card, .edu-card, .tech-item, .lang-item {
-        page-break-inside: avoid;
-    }
-    .section {
-        page-break-inside: avoid;
-    }
+    /* Skills */
+    .skills-grid { gap: 4px; }
+    .skill-tag { padding: 2px 8px; font-size: 0.6rem; }
     
-    /* Force animations to show in print */
+    /* Tech */
+    .tech-grid { gap: 5px; grid-template-columns: repeat(5, 1fr); }
+    .tech-item { padding: 6px 4px; gap: 3px; }
+    .tech-item:hover { transform: none; }
+    .tech-icon { width: 30px; height: 30px; }
+    .tech-icon img { width: 20px !important; height: 20px !important; }
+    .tech-name { font-size: 0.6rem; }
+    .tech-desc { font-size: 0.5rem; }
+    
+    /* Education */
+    .edu-grid { gap: 6px; }
+    .edu-card { padding: 6px 8px; }
+    .edu-institution { font-size: 0.72rem; }
+    .edu-degree { font-size: 0.62rem; }
+    .edu-year { font-size: 0.55rem; }
+    
+    /* Languages */
+    .lang-row { gap: 10px; }
+    .lang-item { padding: 4px 12px; font-size: 0.65rem; }
+    .lang-flag { font-size: 0.9rem; }
+    .lang-level { font-size: 0.6rem; }
+    
+    /* Footer */
+    .footer { padding: 8px 0; font-size: 0.55rem; margin-top: 6px; }
+    
+    /* Prevent cuts */
+    .timeline-item, .initiative-card, .edu-card, .tech-item, .lang-item { page-break-inside: avoid; }
+    .section { page-break-inside: avoid; }
     .fade-in { opacity: 1 !important; transform: none !important; }
 }
-        }
     </style>
 </head>
 <body data-theme="dark">
