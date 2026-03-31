@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barak Ben Kimhy | Data & AI Leader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --transition: 0.4s; }
+
+        [data-theme="dark"] {
+            --bg-primary: #0c0c18;
+            --bg-secondary: #12122a;
+            --bg-card: #17173a;
+            --accent: #7c6aff;
+            --accent-glow: rgba(124, 106, 255, 0.25);
+            --accent-soft: rgba(124, 106, 255, 0.08);
+            --accent-secondary: #22d6a0;
+            --text-primary: #eaeaf2;
+            --text-secondary: #9696b4;
+            --text-muted: #5e5e7e;
+            --border: rgba(124, 106, 255, 0.12);
+            --border-hover: rgba(124, 106, 255, 0.35);
+            --card-shadow: 0 2px 20px rgba(0,0,0,0.25);
+            --glow-1: rgba(124, 106, 255, 0.07);
+            --glow-2: rgba(34, 214, 160, 0.05);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f8fc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --accent: #5046e5;
+            --accent-glow: rgba(80, 70, 229, 0.1);
+            --accent-soft: rgba(80, 70, 229, 0.04);
+            --accent-secondary: #0fa87e;
+            --text-primary: #1a1a2e;
+            --text-secondary: #55556e;
+            --text-muted: #8a8aa4;
+            --border: rgba(80, 70, 229, 0.1);
+            --border-hover: rgba(80, 70, 229, 0.25);
+            --card-shadow: 0 2px 16px rgba(80, 70, 229, 0.06);
+            --glow-1: rgba(80, 70, 229, 0.04);
+            --glow-2: rgba(15, 168, 126, 0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .ambient { position: fixed; border-radius: 50%; filter: blur(130px); pointer-events: none; z-index: 0; transition: background var(--transition); }
+        .ambient-1 { width: 520px; height: 520px; background: var(--glow-1); top: -120px; left: -80px; }
+        .ambient-2 { width: 420px; height: 420px; background: var(--glow-2); bottom: 15%; right: -60px; }
+
+        a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+        a:hover { opacity: 0.8; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+        /* ======== TOP BAR ======== */
+        .top-bar {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 999;
+            display: flex;
+            gap: 10px;
+        }
+
+        .top-btn {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(12px);
+        }
+        .top-btn:hover { border-color: var(--border-hover); transform: scale(1.05); }
+
+        /* ======== LAYOUT ======== */
+        .cv-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            padding: 52px 0 40px;
+        }
+
+        /* ======== SIDEBAR ======== */
+        .sidebar { position: sticky; top: 32px; height: fit-content; }
+
+        .sidebar-photo {
+            width: 160px; height: 160px;
+            border-radius: 22px;
+            object-fit: cover;
+            border: 3px solid var(--border-hover);
+            box-shadow: 0 0 28px var(--accent-glow);
+            margin-bottom: 20px;
+            animation: fadeScale 0.7s ease-out;
+        }
+
+        .sidebar-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 28px;
+        }
+
+        .sidebar-section { margin-bottom: 24px; }
+
+        .sidebar-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-bottom: 10px;
+            transition: color 0.2s;
+        }
+        .sidebar-link:hover { color: var(--accent); }
+        .sidebar-link svg { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.6; }
+
+        .lang-entry { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .lang-name { font-size: 0.9rem; }
+        .lang-level { font-size: 0.78rem; color: var(--text-muted); }
+
+        /* ======== MAIN ======== */
+        .main { min-width: 0; }
+        .section { margin-bottom: 36px; }
+
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+        .section-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent-glow); flex-shrink: 0; }
+        .section-title { font-family: 'Sora', sans-serif; font-size: 1.45rem; font-weight: 700; }
+        .section-line { flex: 1; height: 1px; background: var(--border); }
+
+        /* ======== ABOUT ======== */
+        .about-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: background var(--transition), border var(--transition);
+        }
+
+        /* ======== TIMELINE ======== */
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 4px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding: 22px 26px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 0 24px var(--accent-glow);
+            transform: translateX(4px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px; top: 30px;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg-primary);
+            transition: border-color var(--transition);
+        }
+
+        .tl-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 4px;
+        }
+
+        .tl-company-logo {
+            height: 28px;
+            width: auto;
+            max-width: 100px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        /* Theme-aware logos: show/hide based on theme */
+        .logo-for-dark { display: none; }
+        .logo-for-light { display: block; }
+        [data-theme="dark"] .logo-for-dark { display: block; }
+        [data-theme="dark"] .logo-for-light { display: none; }
+
+        .tl-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tl-company { font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 700; }
+        .tl-date { font-size: 0.8rem; color: var(--text-muted); }
+        .tl-role { font-size: 0.95rem; font-weight: 600; color: var(--accent-secondary); margin-bottom: 4px; }
+        .tl-location { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+        .tl-bullets { list-style: none; padding: 0; }
+
+        .tl-bullets li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .tl-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 9px;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        /* ======== SKILLS ======== */
+        .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        .skill-pill {
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+        .skill-pill.hl { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+
+        /* ======== EDUCATION ======== */
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+
+        .edu-card {
+            padding: 18px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: all 0.3s ease;
+        }
+        .edu-card:hover { border-color: var(--border-hover); }
+
+        .edu-inst { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+        .edu-degree { color: var(--text-secondary); font-size: 0.85rem; }
+        .edu-year { color: var(--text-muted); font-size: 0.78rem; margin-top: 4px; }
+
+        /* ======== TECH STACK ======== */
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
+
+        .tech-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+
+        .tech-icon {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tech-logo {
+            width: 30px; height: 30px;
+            object-fit: contain;
+        }
+
+        .tech-label { font-weight: 600; font-size: 0.84rem; }
+        .tech-sub { font-size: 0.72rem; color: var(--text-muted); }
+
+        /* ======== FOOTER ======== */
+        .footer {
+            text-align: center;
+            padding: 32px 0;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ======== ANIMATIONS ======== */
+        @keyframes fadeScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ======== RESPONSIVE ======== */
+        @media (max-width: 800px) {
+            .cv-layout { grid-template-columns: 1fr; gap: 0; padding-top: 80px; }
+            .sidebar { position: relative; top: 0; text-align: center; padding-bottom: 28px; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+            .sidebar-photo { margin: 0 auto 16px; width: 120px; height: 120px; }
+            .sidebar-link { justify-content: center; }
+            .lang-entry { justify-content: center; gap: 12px; }
+            .timeline { padding-left: 0; }
+            .timeline::before { display: none; }
+            .timeline-item::before { display: none; }
+            .timeline-item:hover { transform: none; }
+            .top-bar { top: 14px; right: 14px; }
+            .top-btn { width: 42px; height: 42px; border-radius: 12px; font-size: 1rem; }
+        }
+
+        /* ======== PRINT ======== */
+        @media print {
+            .top-bar, .ambient, body::before { display: none !important; }
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .sidebar { position: relative; top: 0; }
+            .timeline-item:hover, .tech-card:hover { transform: none; box-shadow: none; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+
+<div class="top-bar">
+    <button class="top-btn" id="themeToggle" aria-label="Toggle theme" title="Switch theme">☀️</button>
+    <button class="top-btn" id="printBtn" aria-label="Download PDF" title="Download as PDF">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
+    </button>
+</div>
+
+<div class="container">
+    <div class="cv-layout">
+
+        <!-- ======== SIDEBAR ======== -->
+        <aside class="sidebar">
+            <img src="profile.jpeg" alt="Barak Ben Kimhy" class="sidebar-photo"
+                 onerror="this.style.background='linear-gradient(135deg, #7c6aff, #22d6a0)'; this.style.display='block';">
+            <div class="sidebar-name">Barak Ben Kimhy</div>
+            <div class="sidebar-title">Data & AI Leader</div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">Contact</div>
+                <a href="mailto:barakbenk@gmail.com" class="sidebar-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    barakbenk@gmail.com
+                </a>
+                <a href="tel:+972505907673" class="sidebar-link">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    +972-50-5907673
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">Socials</div>
+                <a href="https://linkedin.com/in/barakbenk" target="_blank" class="sidebar-link">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 110-4.128 2.064 2.064 0 010 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    barakbenk
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">Languages</div>
+                <div class="lang-entry">
+                    <span class="lang-name">🇮🇱 Hebrew</span>
+                    <span class="lang-level">Native</span>
+                </div>
+                <div class="lang-entry">
+                    <span class="lang-name">🇬🇧 English</span>
+                    <span class="lang-level">Professional</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ======== MAIN ======== -->
+        <main class="main">
+
+            <!-- About -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <span class="section-dot"></span>
+                    <h2 class="section-title">About</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="about-text">
+                    Dynamic Data Leader with a proven track record at Optibus, specializing in data strategy, advanced analytics, and applied AI solutions.<br><br>
+                    Expert in SQL and Python, I lead data platforms and AI-driven initiatives that turn complex data into operational and product impact. Adept at collaborating cross-functionally, I build scalable data foundations, embed machine learning into decision-making, and foster a strong data-driven culture.
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <span class="section-dot"></span>
+                    <h2 class="section-title">Experience</h2>
+                    <span class="section-line"></span>
+                </div>
+
+                <div class="timeline">
+                    <!-- Optibus -->
+                    <div class="timeline-item">
+                        <div class="tl-header">
+                            <img src="logos/optibus.png" alt="Optibus" class="tl-company-logo">
+                            <div class="tl-meta" style="flex:1;">
+                                <span class="tl-company">Optibus</span>
+                                <span class="tl-date">2021 - Present</span>
+                            </div>
+                        </div>
+                        <div class="tl-role">Head of Data Operations</div>
+                        <div class="tl-location">Tel Aviv & London</div>
+                        <ul class="tl-bullets">
+                            <li>Defined and executed data strategy incorporating machine learning and AI-driven analytics to support planning, operations, and product decisions</li>
+                            <li>Led scalable data pipelines and data platforms enabling AI-ready, high-quality datasets across the organization</li>
+                            <li>Partnered with Product and Engineering to translate business problems into data science and AI use cases with measurable impact</li>
+                            <li>Mentored analysts and data engineers on advanced analytics, ML adoption, and responsible data usage</li>
+                        </ul>
+                    </div>
+
+                    <!-- Discount Bank -->
+                    <div class="timeline-item">
+                        <div class="tl-header">
+                            <img src="logos/discount-bank.png" alt="Discount Bank" class="tl-company-logo">
+                            <div class="tl-meta" style="flex:1;">
+                                <span class="tl-company">Discount Bank</span>
+                                <span class="tl-date">2020 - 2021</span>
+                            </div>
+                        </div>
+                        <div class="tl-role">Senior Data Engineer</div>
+                        <div class="tl-location">Tel Aviv</div>
+                        <ul class="tl-bullets">
+                            <li>Led advanced financial analytics to identify trends and support data-driven and predictive decision-making</li>
+                            <li>Designed executive-grade dashboards in PowerBI, enabling real-time insights and analytics at scale</li>
+                            <li>Partnered cross-functionally to improve data collection, quality, and foundations for advanced analytics and ML use cases</li>
+                            <li>Presented strategic insights to senior leadership while mentoring analysts and enforcing high data quality and governance standards</li>
+                        </ul>
+                    </div>
+
+                    <!-- Investing.com -->
+                    <div class="timeline-item">
+                        <div class="tl-header">
+                            <img src="logos/investing.webp" alt="Investing.com" class="tl-company-logo logo-for-light" style="filter: brightness(0);">
+                            <img src="logos/investing.webp" alt="Investing.com" class="tl-company-logo logo-for-dark">
+                            <div class="tl-meta" style="flex:1;">
+                                <span class="tl-company">Investing.com</span>
+                                <span class="tl-date">2016 - 2020</span>
+                            </div>
+                        </div>
+                        <div class="tl-role">Revenue Analyst & Senior Strategic Planner</div>
+                        <div class="tl-location">Tel Aviv</div>
+                        <ul class="tl-bullets">
+                            <li>Led the Revenue team strategic planning efforts</li>
+                            <li>Developing & implementing data analysis, data visualization systems</li>
+                            <li>Managing the top profitable accounts in the company (~$7M) with a constant 7.5% yearly growth</li>
+                            <li>Monitoring Revenue department procedures & results to optimize statistical efficiency and quality</li>
+                        </ul>
+                    </div>
+
+                    <!-- Salestech -->
+                    <div class="timeline-item">
+                        <div class="tl-meta">
+                            <span class="tl-company">Salestech</span>
+                            <span class="tl-date">2013 - 2016</span>
+                        </div>
+                        <div class="tl-role">Business Analyst & Education Lead</div>
+                        <div class="tl-location">Tel Aviv</div>
+                        <ul class="tl-bullets">
+                            <li>Led educational products end-to-end: specification, product behavior, design, technical execution & implementation</li>
+                            <li>Conducted core MVP features and ongoing product asset optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <span class="section-dot"></span>
+                    <h2 class="section-title">Skills</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="skills-wrap">
+                    <span class="skill-pill hl">Data & AI</span>
+                    <span class="skill-pill hl">Data Engineering</span>
+                    <span class="skill-pill">Data Analysis</span>
+                    <span class="skill-pill">Data Strategy</span>
+                    <span class="skill-pill">AI & Data Analytics</span>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <span class="section-dot"></span>
+                    <h2 class="section-title">Education</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="edu-grid">
+                    <div class="edu-card">
+                        <div class="edu-inst">Open University of Israel</div>
+                        <div class="edu-degree">Management & Communication</div>
+                        <div class="edu-year">2014</div>
+                    </div>
+                    <div class="edu-card">
+                        <div class="edu-inst">IBM</div>
+                        <div class="edu-degree">IBM Data Engineering</div>
+                        <div class="edu-year">2023</div>
+                    </div>
+                    <div class="edu-card">
+                        <div class="edu-inst">Ha'Betzefer</div>
+                        <div class="edu-degree">Copywriting, Digital Marketing & Advertising</div>
+                        <div class="edu-year">2013</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <span class="section-dot"></span>
+                    <h2 class="section-title">Technological Stack</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/snowflake.png" class="tech-logo" alt="Snowflake"></div>
+                        <span class="tech-label">Snowflake</span>
+                        <span class="tech-sub">Data Architecture</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/tableau.png" class="tech-logo" alt="Tableau"></div>
+                        <span class="tech-label">Tableau</span>
+                        <span class="tech-sub">Decision Intelligence</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/thoughtspot.png" class="tech-logo" alt="ThoughtSpot"></div>
+                        <span class="tech-label">ThoughtSpot</span>
+                        <span class="tech-sub">Data Democratization</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/boomi.png" class="tech-logo" alt="Boomi"></div>
+                        <span class="tech-label">Boomi</span>
+                        <span class="tech-sub">ELT/ETL Pipeline</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/cursor.png" class="tech-logo" alt="Cursor"></div>
+                        <span class="tech-label">Cursor AI</span>
+                        <span class="tech-sub">AI Development</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/figma.png" class="tech-logo" alt="Figma"></div>
+                        <span class="tech-label">Figma</span>
+                        <span class="tech-sub">Mockups</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/gcp.png" class="tech-logo" alt="Google Cloud"></div>
+                        <span class="tech-label">GCP</span>
+                        <span class="tech-sub">Cloud Environments</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/aws.png" class="tech-logo" alt="AWS"></div>
+                        <span class="tech-label">AWS</span>
+                        <span class="tech-sub">Cloud Environments</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/github.png" class="tech-logo" alt="GitHub"></div>
+                        <span class="tech-label">GitHub</span>
+                        <span class="tech-sub">Engineering Excellence</span>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><img src="logos/jira.png" class="tech-logo" alt="Jira"></div>
+                        <span class="tech-label">Jira</span>
+                        <span class="tech-sub">Agile Delivery</span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="footer">Barak Ben Kimhy &copy; 2026</footer>
+</div>
+
+<script>
+    const toggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const stored = localStorage.getItem('cv-theme');
+    if (stored) {
+        body.setAttribute('data-theme', stored);
+        toggle.textContent = stored === 'dark' ? '☀️' : '🌙';
+    }
+    toggle.addEventListener('click', () => {
+        const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        body.setAttribute('data-theme', next);
+        toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem('cv-theme', next);
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
